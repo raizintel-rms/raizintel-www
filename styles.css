@@ -1,0 +1,156 @@
+/* RaizIntel LLC — marketing site
+   Hand-written, no build step. Mobile-first, light/dark aware. */
+
+:root {
+  --ink:      #0e1a2b;
+  --ink-soft: #26364a;
+  --body:     #2b3648;
+  --muted:    #5b6b80;
+  --line:     #e2e6ec;
+  --bg:       #ffffff;
+  --bg-alt:   #f5f7fa;
+  --accent:   #1f4e8c;
+  --accent-2: #2f6fed;
+  --on-accent:#ffffff;
+  --maxw:     68rem;
+  --narrow:   44rem;
+  --radius:   12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:      #eef2f7;
+    --ink-soft: #cdd6e2;
+    --body:     #c2ccda;
+    --muted:    #8b98a9;
+    --line:     #223247;
+    --bg:       #0c1622;
+    --bg-alt:   #101f30;
+    --accent:   #6ea8ff;
+    --accent-2: #8dbaff;
+    --on-accent:#0c1622;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--body);
+  background: var(--bg);
+  line-height: 1.65;
+  font-size: 1.0625rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+.narrow { max-width: var(--narrow); }
+
+h1, h2, h3 { color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 6vw, 3.25rem); margin: 0 0 1rem; }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 1rem; }
+h3 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+
+p { margin: 0 0 1.1rem; }
+em { font-style: normal; font-weight: 600; color: var(--ink-soft); }
+
+a { color: var(--accent-2); }
+a:hover { color: var(--accent); }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--ink); color: #fff; padding: 0.6rem 1rem; z-index: 10;
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-2); color: var(--on-accent); }
+.btn-ghost { border-color: var(--line); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--accent-2); color: var(--accent-2); }
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(8px);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 0.75rem; padding-bottom: 0.75rem;
+}
+.brand { display: inline-flex; align-items: center; gap: 0.6rem;
+  text-decoration: none; color: var(--ink); font-weight: 700; }
+.brand-mark {
+  display: grid; place-items: center;
+  width: 2rem; height: 2rem; border-radius: 8px;
+  background: var(--accent); color: var(--on-accent);
+  font-weight: 800; font-size: 1.1rem;
+}
+.brand-name { font-size: 1.15rem; letter-spacing: -0.01em; }
+.brand-sub { color: var(--muted); font-weight: 600; }
+.header-cta { padding: 0.5rem 1rem; }
+@media (max-width: 30rem) { .header-cta { display: none; } }
+
+/* Hero */
+.hero { padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 7vw, 4.5rem); }
+.lede { font-size: clamp(1.1rem, 2.5vw, 1.375rem); color: var(--ink-soft);
+  max-width: 42rem; }
+.hero-actions { margin-top: 1.75rem; }
+
+/* Sections */
+.section { padding: clamp(2.5rem, 7vw, 4.5rem) 0;
+  border-top: 1px solid var(--line); }
+.section-alt { background: var(--bg-alt); }
+.aside { color: var(--muted); font-style: italic; }
+
+/* Feature list */
+.features {
+  list-style: none; margin: 2rem 0 0; padding: 0;
+  display: grid; gap: 1.25rem;
+}
+@media (min-width: 40rem) {
+  .features { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+.features li {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1.25rem;
+}
+.features p { margin: 0; color: var(--body); }
+
+/* Waitlist */
+.form-embed {
+  margin: 1.5rem 0 0.75rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 0.5rem; background: var(--bg);
+}
+.form-embed iframe { display: block; width: 100%; border: 0; }
+.privacy-note { color: var(--muted); font-size: 0.9375rem; margin-top: 0.5rem; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--bg-alt);
+  padding: 2.5rem 0; }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 1rem 3rem;
+  align-items: flex-start; justify-content: space-between; }
+.entity { font-style: normal; color: var(--body); line-height: 1.7; }
+.entity strong { color: var(--ink); }
+.fineprint { color: var(--muted); font-size: 0.875rem; margin: 0; max-width: 22rem; }
+
+/* Focus visibility */
+:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px;
+  border-radius: 4px; }
